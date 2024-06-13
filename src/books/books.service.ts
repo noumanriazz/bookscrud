@@ -7,13 +7,15 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Book } from './entities/book.entity';
 import mongoose, { Model } from 'mongoose';
+import { User } from '../auth/entities/user.entity';
 
 @Injectable()
 export class BooksService {
   constructor(@InjectModel('Book') private bookModel: Model<Book>) {}
 
-  async create(book: Book) {
-    const res = this.bookModel.create(book);
+  async create(book: Book, user: User) {
+    const data = Object.assign(book, { user: user._id });
+    const res = this.bookModel.create(data);
     return res;
   }
 

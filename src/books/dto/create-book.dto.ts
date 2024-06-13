@@ -1,5 +1,12 @@
-import { IsString, IsNumber, IsNotEmpty, IsEnum } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsNotEmpty,
+  IsEnum,
+  IsEmpty,
+} from 'class-validator';
 import { Category } from '../entities/book.entity';
+import { User } from '../../auth/entities/user.entity';
 
 export class CreateBookDto {
   @IsNotEmpty()
@@ -18,4 +25,6 @@ export class CreateBookDto {
   @IsString()
   @IsEnum(Category, { message: 'please enter correct Category.' })
   readonly category: Category;
+  @IsEmpty({ message: 'You cannot pass user id' })
+  readonly user: User;
 }
