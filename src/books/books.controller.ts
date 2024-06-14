@@ -14,7 +14,6 @@ import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { Book } from './entities/book.entity';
 
 @Controller('books')
 export class BooksController {
