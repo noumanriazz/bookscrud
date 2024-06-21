@@ -14,8 +14,9 @@ import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 @ApiTags('Books')
+@ApiBearerAuth('JWT-auth')
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
@@ -27,6 +28,7 @@ export class BooksController {
   }
 
   @Get('getall')
+  @UseGuards(AuthGuard())
   async findAll(@Query() query: any) {
     return this.booksService.findAll(query);
   }

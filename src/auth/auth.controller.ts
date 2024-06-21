@@ -20,7 +20,7 @@ export class AuthController {
   async signUp(@Body() signUpDto: SignUpDto) {
     return this.authService.signUp(signUpDto);
   }
-  @Get('/login')
+  @Post('/login')
   async login(@Body() loginDto: LoginDto) {
     return this.authService.Login(loginDto);
   }
