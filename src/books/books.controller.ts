@@ -28,22 +28,24 @@ export class BooksController {
   }
 
   @Get('getall')
-  @UseGuards(AuthGuard())
   async findAll(@Query() query: any) {
     return this.booksService.findAll(query);
   }
 
   @Get('/getbook/:id')
+  @UseGuards(AuthGuard())
   async findOne(@Param('id') id: string) {
     return this.booksService.findOne(id);
   }
 
   @Patch('/updatebook/:id')
+  @UseGuards(AuthGuard())
   async update(@Param('id') id: string, @Body() book: UpdateBookDto) {
     return this.booksService.update(id, book);
   }
 
   @Delete('/deletebook/:id')
+  @UseGuards(AuthGuard())
   async remove(@Param('id') id: string) {
     return this.booksService.remove(id);
   }
